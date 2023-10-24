@@ -1,0 +1,45 @@
+Observations GRPC:
+    - After created the protoc file, I needed to run the following command to genereate the entites and interfaces used by grpc
+    `protoc --go_out=. --go-grpc_out=. proto/<PROTO_FILE_NAME>.proto`
+
+    - The next step is implements the the struture created in the previous step in a go file, such as: create_category.go
+
+    - Create the GRPC server in the main file, attaching the server in the servic
+
+    - To interact with the server, we use the Evans (https://github.com/ktr0731/evans), after installation, to access Evasn, run:
+       - `evans -r repl`
+
+       - If you have more than 1 service, you need select what you want to use running:
+           - `service <service_name>`
+
+       - To do a request for your service, run:
+           - `call <create_serivice_name>`
+
+
+
+Observations graphql
+    - Before run the generate command, you need fix the correct paths where is the folder containing the graphql files on the gqlgen.yml file
+    
+    - To generate the schemas based on the schema.graphqls file, run:
+        - `go run github.com/99designs/gqlgen generate`
+
+    - Queries in the graphql interface:
+        ```
+            mutation createOrder {
+                createOrder(input: {id: "zzzz",Price: 1,Tax: 2,}) {
+                    id
+                    Price
+                    Tax
+                    FinalPrice
+                } 
+            }
+
+            query listOrders {
+                orders {
+                    id
+                    Price
+                    Tax
+                    FinalPrice
+                }
+            }
+        ```
